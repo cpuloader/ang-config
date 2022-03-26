@@ -1,0 +1,16 @@
+<div class="auth-pages">
+
+    <h1 class="auth-pages__title">Confirmation code</h1>
+
+    <mat-card class="auth-pages__card form-fields-theme">
+        <form role="form" (ngSubmit)="send()" #tokenForm="ngForm">
+            <div *ngIf="error" class="form-error-field hint-warning">{{ error }}</div>
+            <mat-form-field>
+                <input matInput type="text" name="confirmation_token" placeholder="Confirmation code" [(ngModel)]="model.token" required>
+                <mat-error *ngIf="tokenForm.form.get('confirmation_token')?.invalid">{{getErrorMessage()}}</mat-error>
+            </mat-form-field>
+            <br>
+            <button mat-raised-button color="accent" [disabled]="!tokenForm.form.valid || isSending">Submit</button>
+        </form>
+    </mat-card>
+</div>

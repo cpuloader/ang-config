@@ -1,0 +1,31 @@
+<div>
+  <div class="main-container">
+    <mat-sidenav-container class="side-nav">
+      <mat-sidenav position="start" mode="side" #sidenav class="mat-elevation-z6" opened>
+        <div class="side-menu">
+          <br/>
+          <p class="side-menu-item" *ngIf="logged"><a routerLink="/settings">{{ username }}</a></p>
+          <p class="side-menu-item" *ngIf="!logged"><a href="#"></a></p>
+        </div>
+
+        <br/><br/>
+        <div class="side-menu">
+          <p class="side-menu-item"><a routerLink="/">HOME</a></p>
+          <p class="side-menu-item"><a routerLink="/foo">MENU2</a></p>
+          <p class="side-menu-item" *ngIf="!logged"><span class="pseudolink" (click)=login()>LOGIN</span></p>
+          <p class="side-menu-item" *ngIf="logged"><span class="pseudolink" (click)=logout()>LOGOUT</span></p>
+        </div>
+      </mat-sidenav>
+
+      <div class="router-container">
+        <router-outlet></router-outlet>
+      </div>
+
+    </mat-sidenav-container>
+
+    <player-panel></player-panel>
+
+  </div>
+
+  <flat-audio></flat-audio>
+</div>

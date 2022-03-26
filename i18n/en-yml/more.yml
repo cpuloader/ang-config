@@ -1,0 +1,4 @@
+# foo2
+EXTRA:
+  DATA: "Extradata"
+EXTRA2: "Extradata 2"

@@ -1,0 +1,64 @@
+mat-form-field {
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.settings-page {
+
+    &__title {
+        margin-top: 20px;
+        margin-left: 20px;
+        margin-bottom: 20px;
+    }
+
+    &__submit-btn {
+        margin-left: 20px;
+    }
+
+    &__card {
+        width: 50%;
+        margin-bottom: 20px;
+    }
+
+    &__half {
+        width: 50%;
+    }
+
+    &__email-not-confirmed {
+        display: block;
+        padding: 5px 5px 5px 0;
+        font-size: 12px;
+    }
+
+    &__checkboxes-inline {
+        display: flex;
+        flex-direction: row;
+    }
+
+    &__checkbox {
+        margin: 5px 20px 10px 0;
+    }
+
+    &__spinner {
+        width:100%;
+        margin: 0 auto;
+        margin-top: 200px;
+    }
+
+    textarea.mat-input-element {
+        resize: none;
+    }
+
+    &__url {
+        .mat-input-element {
+            width: auto;
+        }
+
+        &_label {
+            font-size: 75%;
+            transform: translateY(13px);
+            margin-top: -13px;
+        }
+
+    }
+}

@@ -1,0 +1,6 @@
+<div class="volume">
+  <mat-slider min="0" max="100" step="1" [value]="value" (change)=OnValueChange($event)></mat-slider>
+
+  <div class="volume-icon" *ngIf="value > 0" (click)="toggle()"><mat-icon>volume_up</mat-icon></div>
+  <div class="volume-icon" *ngIf="value === 0" (click)="toggle()"><mat-icon>volume_off</mat-icon></div>
+</div>

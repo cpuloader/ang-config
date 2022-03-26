@@ -1,0 +1,111 @@
+@import "../../styles/variables.scss";
+
+.player-panel {
+    position: relative;
+    display: display;
+    width: 100%;
+    height: 100px;
+    box-shadow: 0 8px 8px 7px rgba(0,0,0,0.2);
+    background-color: $primary;
+    z-index: 10;
+
+    &__left,
+    &__right {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: calc(50% - 230px);
+    }
+
+    &__left {
+        left: 0;
+    }
+
+    &__right {
+        right: 0;
+        padding-top: 10px;
+    }
+
+    &__center {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        width: 460px;
+        margin-left: -230px;
+        margin-right: -230px;
+    }
+
+    &__cover {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        width: 80px;
+        height: 80px;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    &__info {
+        position: relative;
+        display: inline-block;
+        padding: 10px 50px 10px 100px;
+        overflow: hidden;
+        max-width: 100%;
+
+        &_name,
+        &_title {
+            display: block;
+            padding-bottom: 3px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        &_name {
+            padding-right: 50px;
+            font-size: 24px;
+        }
+
+        &_title {
+            font-size: 16px;
+        }
+
+        &_like {
+            position: absolute;
+            top: 20px;
+            right: 0;
+            width: 80px;
+            height: 100px;
+            overflow: hidden;
+
+            .mat-icon {
+                width: 100%;
+                height: 100%;
+                margin-left: 30px;
+                padding-top: 10px;
+                font-size: 38px;
+                cursor: pointer;
+                user-select: none;
+            }
+        }
+    }
+
+    &__queue {
+        position: relative;
+        height: 48px;
+        overflow: hidden;
+        float: right;
+
+        .mat-icon {
+            width: 48px;
+            height: 48px;
+            margin-top: 6px;
+            margin-left: 4px;
+            font-size: 34px;
+            cursor: pointer;
+            user-select: none;
+        }
+    }
+}

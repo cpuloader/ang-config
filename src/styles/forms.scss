@@ -1,0 +1,28 @@
+.form-error-field {
+    font-size: 15px;
+    margin: 10px 0;
+    padding: 10px;
+}
+
+.form-fields-inline {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.field-label-color {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.form-field-half {
+    flex: 0 0 50%;
+
+    &:first-child {
+      padding-right: 20px;
+    }
+}
+
+/* star symbol in form field */
+.mat-focused .mat-form-field-required-marker {
+    color: white !important;
+}

@@ -1,0 +1,45 @@
+@import "../../styles/variables.scss";
+
+.channel-page {
+    position: relative;
+
+    &__header {
+        display: block;
+        width: 100%;
+        height: 300px;
+    }
+
+    &__title {
+        padding: 20px;
+        font-size: 30px;
+    }
+
+    &__picture {
+        position: absolute;
+        display: block;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 300px;
+        background-image: linear-gradient(to bottom, RGBA(72, 91, 255, 0.5), RGBA(10, 206, 254, 0.5));
+    }
+
+    &__mixes {
+        position: relative;
+        display: block;
+    }
+
+    &__mix {
+        position: relative;
+        display: block;
+        margin: 5px;
+        width: auto;
+        height: 50px;
+        background-color: $primary;
+        color: #fff;
+    }
+
+    cdk-virtual-scroll-viewport {
+      height: calc(100vh - 100px);
+    }
+}

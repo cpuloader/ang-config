@@ -1,0 +1,44 @@
+<div class="player">
+    <div class="player__controls">
+        <div class="player__control">
+            <mat-icon>skip_previous</mat-icon>
+        </div>
+
+        <div class="player__control-play">
+            <span (click)=toggle()>
+                <span [hidden]="isPlaying"><mat-icon>play_arrow</mat-icon></span>
+                <span [hidden]="!isPlaying"><mat-icon>pause_arrow</mat-icon></span>
+            </span>
+        </div>
+
+        <div class="player__control">
+            <mat-icon>skip_next</mat-icon>
+        </div>
+    </div>
+
+    <div class="player__progress">
+        <div class="player__progress_time-current" [hidden]="!outCurrentTime">{{ outCurrentTime }}</div>
+
+        <div class="player__seekbar-wrapper">
+            <div class="player__seekbar" id="playerSeekbarBlock" [draggable]="'mainPlayer'" [draggableTarget]="true" (dragEvents)=OnDragEvent($event)>
+                <div class="player__seekbar__inner">
+                    <div class="player__seekbar__total" id="#playerSeekbarTotal">
+                        <div class="player__seekbar__seeking player__seekbar__seeking_total" id="playerSeekingTotal"></div>
+                    </div>
+
+                    <div class="player__seekbar__buffer" id="playerSeekbarBuffer" [ngClass]="{'processing' : playbackState === 'waiting'}">
+                        <div class="player__seekbar__seeking player__seekbar__seeking_buffer" id="playerSeekingBuffer"></div>
+                    </div>
+
+                    <div class="player__seekbar__progress" id="playerSeekbarProgress">
+                        <div class="player__seekbar__seeking player__seekbar__seeking_progress" id="#playerSeekingProgress"></div>
+                    </div>
+                </div>
+
+                <div class="player__seekbar__overlay" id="playerOverlayBlock"></div>
+            </div>
+        </div>
+
+        <div class="player__progress_time-duration" [hidden]="!outDuration">{{ outDuration }}</div>
+    </div>
+</div>

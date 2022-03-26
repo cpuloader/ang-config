@@ -1,0 +1,23 @@
+<div class="player-panel">
+    <div class="player-panel__left">
+        <div class="player-panel__cover" [style.backgroundImage]="cover"></div>
+
+        <div class="player-panel__info">
+            <div class="player-panel__info_name">{{ author }}</div>
+            <div class="player-panel__info_title">{{ title }}</div>
+
+            <div class="player-panel__info_like" [hidden]="!title || liked" (click)="like()"><mat-icon>favorite_border</mat-icon></div>
+            <div class="player-panel__info_like" [hidden]="!title || !liked" (click)="like()"><mat-icon>favorite</mat-icon></div>
+        </div>
+    </div>
+
+    <div class="player-panel__center">
+        <player (mixChanged)=OnMixChanged($event)></player>
+    </div>
+
+    <div class="player-panel__right">
+        <volume></volume>
+
+        <div class="player-panel__queue" (click)="openQueue()"><mat-icon>queue_music</mat-icon></div>
+    </div>
+</div>

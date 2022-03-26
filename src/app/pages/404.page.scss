@@ -1,0 +1,14 @@
+.page404-page {
+    &_main {
+        width: 30%;
+        margin: auto;
+
+        h1, p {
+            text-align: center;
+        }
+
+        @media only screen and (max-device-width: 480px) {
+            width: 100%;
+        }
+    }
+}

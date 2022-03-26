@@ -1,0 +1,145 @@
+<div class="settings-page">
+    <h1 class="settings-page__title">Settings</h1>
+
+    <ng-container *ngIf="isReady">
+        <avatar-upload [blocked]="isSending" (avatarChanged)="onAvatarChange($event)"></avatar-upload>
+
+        <mat-card class="settings-page__card form-fields-theme">
+            <form [formGroup]="form" novalidate (ngSubmit)="send()">
+                <mat-form-field>
+                    <mat-label>Name</mat-label>
+                    <input matInput formControlName="name" type="text" name="name" maxlength="50" placeholder="Username">
+                    <mat-error *ngIf="form.controls.name.invalid">{{getErrorMessage('name')}}</mat-error>
+                </mat-form-field>
+                <br>
+
+                <mat-form-field>
+                    <mat-label>Aliases that you use now, or in the past</mat-label>
+                    <mat-chip-list #aliasesList aria-label="Aliases" formArrayName="aliases">
+                        <mat-chip *ngFor="let alias of aliasesControls.value" [selectable]="false" [removable]="true" (removed)="removeChip(alias, 'alias')">
+                            {{alias}}
+                            <mat-icon matChipRemove>cancel</mat-icon>
+                        </mat-chip>
+                        <input placeholder="Add alias..."
+                               [matChipInputFor]="aliasesList"
+                               [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                               [matChipInputAddOnBlur]="true"
+                               (matChipInputTokenEnd)="addChip($event, 'alias')">
+                    </mat-chip-list>
+                </mat-form-field>
+                <br>
+
+                <mat-form-field>
+                    <mat-label>Primary music styles</mat-label>
+                    <mat-select formControlName="genres" multiple>
+
+                        <mat-select-trigger>
+                            <mat-chip-list #genresList>
+                                <mat-chip *ngFor="let genre of genresControls.value" [selectable]="false" [removable]="true" (removed)="removeGenre(genre)">
+                                    {{ genre }}
+                                    <mat-icon matChipRemove>cancel</mat-icon>
+                                </mat-chip>
+                            </mat-chip-list>
+                        </mat-select-trigger>
+
+                        <mat-option *ngFor="let genre of tags" [value]="genre">{{genre}}</mat-option>
+
+                    </mat-select>
+                    <mat-error *ngIf="genresControls.invalid">{{getErrorMessage('genres')}}</mat-error>
+                </mat-form-field>
+                <br>
+
+                <div class="form-fields-inline">
+                    <mat-form-field class="form-field-half" appearance="fill">
+                        <mat-label>Country</mat-label>
+                        <mat-select formControlName="country" (selectionChange)="countryChanged($event)" [compareWith]="compareFn">
+                            <mat-option>--</mat-option>
+                            <mat-option *ngFor="let country of countries" [value]="country">
+                                {{country.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field class="form-field-half" appearance="fill">
+                        <mat-label>City</mat-label>
+                        <mat-select formControlName="city" [compareWith]="compareFn">
+                            <mat-option>--</mat-option>
+                            <mat-option *ngFor="let city of cities" [value]="city">
+                                {{city.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <br>
+
+                <mat-form-field>
+                    <mat-label>Links to your music stuff / mix-tapes / events you have been involved in</mat-label>
+                    <mat-chip-list #linksList aria-label="Links" formArrayName="links">
+                        <mat-chip *ngFor="let link of linksControls.value" [selectable]="false" [removable]="true" (removed)="removeChip(link, 'link')">
+                            {{link}}
+                            <mat-icon matChipRemove>cancel</mat-icon>
+                        </mat-chip>
+                        <input placeholder="Add link..."
+                               [matChipInputFor]="linksList"
+                               [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                               [matChipInputAddOnBlur]="true"
+                               (matChipInputTokenEnd)="addChip($event, 'link')">
+                    </mat-chip-list>
+                </mat-form-field>
+                <br>
+
+                <div class="form-fields-inline">
+                    <mat-form-field class="form-field-half">
+                        <mat-label>About me in English</mat-label>
+                        <textarea matInput type="text" name="description_en" formControlName="description_en"></textarea>
+                    </mat-form-field>
+                    <mat-form-field class="form-field-half">
+                        <mat-label>About me in Russian</mat-label>
+                        <textarea matInput type="text" name="description_ru" formControlName="description_ru"></textarea>
+                    </mat-form-field>
+                </div>
+                <br/>
+
+                <div class="settings-page__url_label" [ngClass]="{'color-warn': form.controls.url.invalid, 'field-label-color': !form.controls.url.invalid}">
+                    Profile address
+                </div>
+                <mat-form-field class="settings-page__url">
+                    <span>https://flat.audio/</span><input matInput formControlName="url" type="url" name="url">
+                    <mat-error *ngIf="form.controls.url.invalid">{{getErrorMessage('url')}}</mat-error>
+                </mat-form-field>
+                <br>
+
+                <div>
+                    <div *ngIf="!user.email_confirmed" class="settings-page__email-not-confirmed color-warn">Email not confirmed</div>
+                    <div class="form-fields-inline">
+                        <mat-form-field class="form-field-half">
+                            <mat-label>Email</mat-label>
+                            <input matInput type="email" name="email" formControlName="email" placeholder="Email">
+                        </mat-form-field>
+
+                        <mat-form-field class="form-field-half">
+                            <mat-label>Password</mat-label>
+                            <input matInput type="password" name="password" formControlName="password">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <br>
+
+                <div>
+                    <div class="settings-page__checkboxes-inline">
+                        <mat-checkbox class="settings-page__checkbox" [checked]="true" [disabled]="true">Listener</mat-checkbox>
+                        <mat-checkbox class="settings-page__checkbox" [checked]="user.dj" [disabled]="user.dj" (change)="djStatusChanged($event)">Dj</mat-checkbox>
+                    </div>
+                </div>
+                <br>
+
+                <div *ngIf="success" class="form-error-field hint-success">User successfully updated!</div>
+
+                <button mat-button color="white" type="button">Cancel</button>
+                <button class="settings-page__submit-btn" mat-raised-button color="accent" [disabled]="!form.valid">Submit</button>
+            </form>
+        </mat-card>
+    </ng-container>
+
+    <mat-spinner *ngIf="!isReady" class="settings-page__spinner"></mat-spinner>
+</div>

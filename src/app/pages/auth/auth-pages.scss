@@ -1,0 +1,33 @@
+mat-form-field {
+    margin-bottom: 5px;
+}
+
+.auth-pages {
+    &__title {
+        margin-top: 20px;
+        margin-left: 20px;
+    }
+
+    &__card {
+        max-width: 400px;
+    }
+
+    &__link {
+        margin-left: 20px;
+    }
+
+    &__checkbox {
+        margin: 5px 0 10px 0;
+    }
+
+    &__italic_link {
+        font-size: 12px;
+        font-style: italic;
+        padding-right: 20px;
+    }
+
+    &__disclaimer {
+        font-size: 12px;
+        font-style: italic;
+    }
+}

@@ -1,0 +1,32 @@
+{
+  "entrypoints": {
+    "polyfills": {
+      "js": [
+        "http://localhost:4200/polyfills-689becf8.bundle.js"
+      ]
+    },
+    "vendor": {
+      "js": [
+        "http://localhost:4200/vendor-61ca5c69.bundle.js"
+      ]
+    },
+    "main": {
+      "js": [
+        "http://localhost:4200/main-8afa1e5c.bundle.js"
+      ]
+    },
+    "styles": {
+      "css": [
+        "http://localhost:4200/styles-af3d3f94.css"
+      ],
+      "js": [
+        "http://localhost:4200/styles-8d31299c.bundle.js"
+      ]
+    }
+  },
+  "main.js": "http://localhost:4200/main-8afa1e5c.bundle.js",
+  "polyfills.js": "http://localhost:4200/polyfills-689becf8.bundle.js",
+  "styles.css": "http://localhost:4200/styles-af3d3f94.css",
+  "styles.js": "http://localhost:4200/styles-8d31299c.bundle.js",
+  "vendor.js": "http://localhost:4200/vendor-61ca5c69.bundle.js"
+}

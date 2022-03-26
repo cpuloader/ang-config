@@ -1,0 +1,10 @@
+<div class="main-page">
+  <p [translate]="'HOME.HELLO'" (click)="langChange()">MAIN PAGE HERE</p>
+  <p>{{ lang }}</p>
+
+  <channels-list></channels-list>
+
+  <span [hidden]="loaded">
+      <mat-spinner></mat-spinner>
+  </span>
+</div>

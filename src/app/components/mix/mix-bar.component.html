@@ -1,0 +1,14 @@
+<div class="mix-bar">
+  <div class="mix-bar__player">
+    <mix-bar-player [mix]=mix></mix-bar-player>
+  </div>
+
+  <div class="mix-bar__data">
+      {{ title }}
+  </div>
+
+  <div class="mix-bar__liked" (click)="like()">
+    <span [hidden]="liked"><mat-icon>favorite_border</mat-icon></span>
+    <span [hidden]="!liked"><mat-icon>favorite</mat-icon></span>
+  </div>
+</div>

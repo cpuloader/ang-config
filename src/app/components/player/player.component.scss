@@ -1,0 +1,218 @@
+$seekbar-positions: durationSeekbar, progress, durationProgress, buffer, durationBuffer, handleSeeking, overlay, handleProgress, time;
+
+.player {
+    position: relative;
+
+    &__controls {
+        position: absolute;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 60px;
+    }
+
+    &__control {
+        flex: 0 0 40px;
+        height: 100%;
+        overflow: hidden;
+
+        .mat-icon {
+            width: 100%;
+            height: 100%;
+            padding-top: 10px;
+            font-size: 38px;
+            cursor: pointer;
+            user-select: none;
+        }
+    }
+
+    &__control-play {
+        flex: 0 0 60px;
+        height: 100%;
+        overflow: hidden;
+
+        .mat-icon {
+            width: 100%;
+            height: 100%;
+            font-size: 57px;
+            cursor: pointer;
+            user-select: none;
+        }
+    }
+
+    &__progress {
+        position: absolute;
+        display: block;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        height: 20px;
+
+        &_time-current,
+        &_time-duration {
+            position: absolute;
+            top: 2px;
+            width: 55px;
+            font-size: 12px;
+        }
+
+        &_time-current {
+            left: 0;
+            padding-right: 5px;
+            text-align: right;
+        }
+
+        &_time-duration {
+            right: 0;
+            padding-left: 5px;
+            text-align: left;
+        }
+    }
+
+    &__seekbar-wrapper {
+        position: absolute;
+        top: 0;
+        left: 55px;
+        right: 55px;
+        height: 100%;
+    }
+
+    &__seekbar {
+        position: relative;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+        cursor: default;
+
+        &:hover {
+            .player__seekbar__seeking {
+                display: block;
+            }
+        }
+
+        &.dragging {
+            cursor: ew-resize;
+        }
+
+        &.play,
+        &.start,
+        &.pause,
+        &.playing,
+        &.waiting {
+            .player__seekbar__handle_progress {
+                opacity: 1;
+            }
+        }
+
+        &__inner {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          top: 0;
+        }
+
+        &__total,
+        &__buffer,
+        &__overlay,
+        &__seeking,
+        &__progress {
+            overflow: hidden;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        &__overlay {
+            left: 0;
+            z-index: index($seekbar-positions, overlay);
+        }
+
+        &__total {
+            z-index: 1;
+            background-color: #f1f4f8;
+        }
+
+        &__buffer {
+            z-index: 2;
+            background-color: #e8ecf5;
+        }
+
+        &__progress {
+            z-index: 3;
+            width: 0;
+            background-color: RGB(72,91,255);
+        }
+
+        &__seeking {
+            z-index: 2;
+            display: none;
+            width: 0;
+
+            &_total,
+            &_buffer,
+            &_progress {
+                background-color: rgba(152, 181, 230, .7);
+            }
+        }
+
+        &__handle {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 1px;
+            height: 100%;
+
+            &_seeking {
+                z-index: index($seekbar-positions, handleSeeking);
+                display: none;
+
+                &.visible {
+                    display: block;
+                }
+            }
+
+            &__time-stream {
+                font-size: .625rem;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                display: block;
+                height: 20px;
+                margin-left: 1px; // нужно сдвинуть на 1 пиксел, чтобы уголок и линия совпадали
+                margin-top: 5px;
+                padding: 0 5px;
+                line-height: 20px;
+                color: #fff;
+                transform: translate(-50%, 0);
+                white-space: nowrap;
+
+                &:after {
+                    content: '';
+                    position: absolute;
+                    bottom: 100%;
+                    left: 50%;
+                    width: 0;
+                    height: 0;
+                    margin-left: -5px;
+                    border: 5px solid transparent;
+                }
+
+                &_seeking {
+                    background-color: rgba(0, 0, 0, .8);
+
+                    &:after {
+                        border-bottom-color: rgba(0, 0, 0, .8);
+                    }
+                }
+            }
+
+        }
+    }
+}

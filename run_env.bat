@@ -1,0 +1,1 @@
+d:\v_env\p38\scripts\activate

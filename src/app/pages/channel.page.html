@@ -1,0 +1,15 @@
+<div class="channel-page">
+  <div class="channel-page__header">
+    <div class="channel-page__picture"></div>
+
+    <h3 class="channel-page__title">{{ id }}</h3>
+  </div>
+
+  <cdk-virtual-scroll-viewport itemSize="50" #mixesList (scrolledIndexChange)="onScroll($event)">
+    <li class="channel-page__mix" *cdkVirtualFor="let mix of mixes; templateCacheSize: 0">
+      <span *ngIf="mix.loaded"><mix-bar [mix]=mix.id></mix-bar></span>
+      <div *ngIf="!mix.loaded" class="mix-bar-placeholder">Loading...</div>
+    </li>
+  </cdk-virtual-scroll-viewport>
+
+</div>

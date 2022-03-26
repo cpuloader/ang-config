@@ -1,0 +1,22 @@
+.avatar-crop-dialog {
+    position: relative;
+    display: block;
+    width: 548px; // matdialog padding=24px
+
+    &__container {
+        position: relative;
+        display: block;
+        width: 100%;
+        height: 500px;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    &__errors {
+        position: relative;
+        display: block;
+        width: 100%;
+        margin: 20px 0;
+    }
+}

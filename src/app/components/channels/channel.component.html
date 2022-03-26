@@ -1,0 +1,9 @@
+<div class="channel">
+  <h2 class="channel-header">{{name}}</h2>
+
+  <ul class="channel-container">
+    <li class="channel-item" *ngFor="let card of cards">
+      <channel-card [id]=card.name></channel-card>
+    </li>
+  </ul>
+</div>

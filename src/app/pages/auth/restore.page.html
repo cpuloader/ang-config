@@ -1,0 +1,19 @@
+<div class="auth-pages">
+
+    <h1 class="auth-pages__title">Password restore</h1>
+
+    <mat-card class="auth-pages__card form-fields-theme">
+        <form role="form" (ngSubmit)="send()" #restoreForm="ngForm">
+            <div *ngIf="error" class="form-error-field hint-warning">{{ error }}</div>
+            <mat-form-field>
+                <mat-label>Your email</mat-label>
+                <input matInput type="email" name="email" placeholder="Email" [(ngModel)]="model.email" required>
+                <mat-error *ngIf="restoreForm.form.get('email')?.invalid">{{getErrorMessage()}}</mat-error>
+            </mat-form-field>
+            <br>
+            <button mat-raised-button color="accent" [disabled]="!restoreForm.form.valid || isSending">Submit</button>
+        </form>
+        <br>
+        <p class="auth-pages__disclaimer">The instruction how to recover your password will be sent to your email address</p>
+    </mat-card>
+</div>

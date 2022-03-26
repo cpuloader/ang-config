@@ -1,0 +1,9 @@
+<div class="avatar-upload">
+    <div class="avatar-upload__container" [style.background-image]="getImage()">
+        <input [hidden]="true" type="file" #fileInput (change)="updateAvatar($event)" accept="image/*">
+        <button mat-raised-button (click)="!blocked ? fileInput?.click() : false" class="avatar-upload__file-input-button">
+            Change picture
+        </button>
+    </div>
+    <mat-progress-bar *ngIf="uploading" class="avatar-upload__progress-bars" mode="indeterminate" color="primary"></mat-progress-bar>
+</div>

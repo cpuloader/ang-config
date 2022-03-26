@@ -1,0 +1,25 @@
+<div class="auth-pages">
+
+    <h1 class="auth-pages__title">Login</h1>
+
+    <mat-card class="auth-pages__card form-fields-theme">
+        <form role="form" (ngSubmit)="login()" #loginForm="ngForm">
+            <div *ngIf="error" class="form-error-field hint-warning">{{ error }}</div>
+            <mat-form-field>
+                <input matInput type="email" name="email" placeholder="Email" [(ngModel)]="user.email" required>
+                <mat-error *ngIf="loginForm.form.get('email')?.invalid">{{getErrorMessage('email')}}</mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <input matInput type="password" name="password" placeholder="Password" [(ngModel)]="user.password" required>
+                <mat-error *ngIf="loginForm.form.get('password')?.invalid">{{getErrorMessage('password')}}</mat-error>
+            </mat-form-field>
+            <br>
+            <a class="auth-pages__italic_link" [routerLink]="['/auth/password/restore']">Forgot your password?</a>
+            <mat-checkbox color="primary" name="remember_me" class="auth-pages__checkbox" [(ngModel)]="remember_me" (change)="onCheck($event)">Remember me</mat-checkbox>
+            <br>
+            <button mat-raised-button color="accent" [disabled]="!loginForm.form.valid || isSending">Submit</button>
+            <a class="auth-pages__link" [routerLink]="['/auth/signup']">Click here to Signup</a>
+        </form>
+    </mat-card>
+</div>
